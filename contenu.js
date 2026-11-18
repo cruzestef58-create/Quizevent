@@ -9,8 +9,9 @@ export const CONFIG = {
   inactiviteSecondes: 90,       // valeur par défaut, modifiable dans l'espace exposant
   pointsParBonneReponse: 10,
   repartition: { A: 3, B: 3, C: 2, D: 2 }, // nombre de questions tirées par catégorie
-  texteSite: '',                // ex. 'www.canidesbycruz.fr' (affiché sous le QR code)
-  logo: 'images/logo.png',      // ton logo (PNG transparent conseillé)
+  texteSite: 'canidesbycruz.fr', // affiché sous le QR code
+  logo: 'images/logo.png',      // logo rouge, fond transparent (sur fond clair)
+  logoClair: 'images/logo-clair.png', // logo pêche, fond transparent (sur fond rouge)
   qrCode: 'images/qr-code.png', // QR code vers ton site
   photoAccueil: 'images/accueil-chien.jpg', // facultatif : remplace l'illustration de l'accueil
 };
@@ -26,9 +27,9 @@ export const CATEGORIES = {
 export const NIVEAUX = [
   { min: 0, nom: 'Curieux des chiens', couleur: '#C68B59',
     message: "Chaque question est une occasion d'apprendre ! Observer son chien et se poser des questions, c'est déjà le premier pas pour mieux le comprendre." },
-  { min: 40, nom: 'Apprenti éducateur', couleur: '#7F9A6A',
+  { min: 40, nom: 'Apprenti éducateur', couleur: '#9AA2A6',
     message: "Belle base ! Tu as déjà de bons réflexes. Avec un peu d'observation, le langage des chiens deviendra de plus en plus clair pour toi." },
-  { min: 70, nom: 'Complice des chiens', couleur: '#3E8E5E',
+  { min: 70, nom: 'Complice des chiens', couleur: '#BD4E41',
     message: "Très beau score ! Tu sais regarder au-delà des idées reçues et tenir compte du contexte. Les chiens apprécient ce genre de regard." },
   { min: 90, nom: 'Expert du langage canin', couleur: '#D19A2E',
     message: "Impressionnant ! Tu combines observation, respect et compréhension des besoins du chien. Viens en parler sur le stand, on a sûrement plein de choses à échanger !" },

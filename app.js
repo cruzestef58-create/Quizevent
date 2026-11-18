@@ -33,8 +33,8 @@ const icone = (nom) =>
 
 // Illustration du chien (accueil, remplacement des photos manquantes, inactivité)
 const CHIEN = `<svg class="chien" viewBox="0 0 200 200" role="img" aria-label="Illustration d'un chien souriant">
-  <path d="M64 148 Q100 166 136 148 L100 194 Z" fill="#9CAF88"/>
-  <circle cx="100" cy="176" r="5" fill="#F5F0E6"/>
+  <path d="M64 148 Q100 166 136 148 L100 194 Z" fill="#BD4E41"/>
+  <circle cx="100" cy="176" r="5" fill="#FACCA1"/>
   <g class="tete">
     <path d="M60 60 C36 56 18 92 27 124 C32 146 53 147 61 128 C67 112 71 88 73 74 Z" fill="#7A5236"/>
     <path class="oreille-d" d="M140 60 C164 56 182 92 173 124 C168 146 147 147 139 128 C133 112 129 88 127 74 Z" fill="#7A5236"/>
@@ -285,7 +285,7 @@ function confettis() {
   const L = innerWidth, H = innerHeight;
   canvas.width = L * dpr; canvas.height = H * dpr;
   ctx.scale(dpr, dpr);
-  const couleurs = ['#9CAF88', '#3E8E5E', '#D19A2E', '#F4E6CF', '#6F8A5E'];
+  const couleurs = ['#BD4E41', '#FACCA1', '#D19A2E', '#3E8E5E', '#C8634F'];
   const morceaux = Array.from({ length: 110 }, () => ({
     x: L / 2 + (Math.random() - .5) * L * .3, y: H * .35,
     vx: (Math.random() - .5) * 14, vy: -Math.random() * 13 - 4,
@@ -426,6 +426,7 @@ function verifierFichiers() {
     : `<li class="manque">✗ Mode hors ligne pas encore actif (ouvre le jeu depuis une adresse https, puis recharge une fois).</li>`;
   const fichiers = [
     [CONFIG.logo, 'Logo (sinon : logo texte)'],
+    [CONFIG.logoClair, 'Logo version claire, sur fond rouge (sinon : logo texte)'],
     [CONFIG.qrCode, 'QR code (sinon : bloc masqué)'],
     [CONFIG.photoAccueil, 'Photo d\'accueil (facultative, sinon : illustration)'],
     ...QUESTIONS.filter((q) => q.image).map((q) => [q.image.src, `Photo ${q.id.toUpperCase()} (sinon : illustration)`]),
@@ -483,10 +484,11 @@ function initialiser() {
   for (const el of $$('[data-chien]')) el.innerHTML = CHIEN;
   for (const el of $$('[data-marque]')) el.innerHTML = marqueHTML();
 
-  // Logo réel : remplace le logo texte s'il est présent
-  const logo = new Image();
-  logo.onload = () => $$('.logo-img').forEach((img) => { img.src = CONFIG.logo; img.hidden = false; img.nextElementSibling.hidden = true; });
-  logo.src = CONFIG.logo;
+  // Logo réel : remplace le logo texte s'il est présent (version claire sur fond rouge)
+  for (const img of $$('.logo-img')) {
+    img.onload = () => { img.hidden = false; img.nextElementSibling.hidden = true; };
+    img.src = img.closest('.marque-claire') ? CONFIG.logoClair : CONFIG.logo;
+  }
 
   // Photo d'accueil facultative
   const photo = $('#photo-accueil');
@@ -548,7 +550,7 @@ function initialiser() {
   // Hors ligne : service worker + préchargement des images fournies
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('sw.js').then(() => navigator.serviceWorker.ready).then((reg) => {
-      const images = [CONFIG.logo, CONFIG.qrCode, CONFIG.photoAccueil, ...QUESTIONS.filter((q) => q.image).map((q) => q.image.src)];
+      const images = [CONFIG.logo, CONFIG.logoClair, CONFIG.qrCode, CONFIG.photoAccueil, ...QUESTIONS.filter((q) => q.image).map((q) => q.image.src)];
       reg.active?.postMessage({ type: 'precache', urls: images });
     }).catch((err) => console.warn('Service worker non installé :', err));
   }
