@@ -1,7 +1,7 @@
 Dépose ici tes fichiers (noms exacts, en minuscules). Tous sont facultatifs :
 s'il en manque un, le jeu affiche automatiquement un remplacement propre.
 
-  logo.png                     Logo rouge, fond transparent (extrait de l'affiche)
+  logo.png                     Logo rouge, fond transparent (fichier d'origine recoloré)
   logo-clair.png               Logo pêche, fond transparent, pour les fonds rouges
   qr-code.png                  QR code vers ton site (extrait de l'affiche)
   accueil-chien.jpg            Photo de l'accueil (carrée, ~900 px) — sinon illustration
