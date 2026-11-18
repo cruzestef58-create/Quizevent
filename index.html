@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Défi Canin">
+  <meta name="theme-color" content="#F5F0E6">
+  <meta name="description" content="Le Grand Défi Canin — un jeu proposé par Canidés By Cruz, éducation canine.">
+  <title>Le Grand Défi Canin</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+<main id="app">
+
+  <!-- ======================= ACCUEIL ======================= -->
+  <section id="ecran-accueil" class="ecran actif" aria-labelledby="titre-accueil">
+    <div class="accueil-grille">
+      <div class="accueil-visuel">
+        <div class="halo"></div>
+        <span class="patte-deco p1" data-icone="paw"></span>
+        <span class="patte-deco p2" data-icone="paw"></span>
+        <span class="patte-deco p3" data-icone="paw"></span>
+        <img id="photo-accueil" class="photo-accueil" alt="Un chien qui regarde l'objectif" hidden>
+        <div class="chien-illu" data-chien></div>
+      </div>
+      <div class="accueil-texte">
+        <!-- Appui long 3 s ici = espace exposant -->
+        <div class="marque" id="marque-accueil" data-marque></div>
+        <h1 id="titre-accueil">Le Grand<br>Défi Canin</h1>
+        <p class="accroche">Penses-tu vraiment connaître les chiens&nbsp;?</p>
+        <ul class="infos">
+          <li><span data-icone="help"></span><span><strong>10</strong> questions</span></li>
+          <li><span data-icone="clock"></span><span>Environ 3 à 4 minutes</span></li>
+          <li><span data-icone="heart"></span><span>Pour tous les amoureux des chiens</span></li>
+        </ul>
+        <button class="btn btn-principal btn-pulse" id="btn-demarrer">C'est parti ! 🐾</button>
+      </div>
+    </div>
+    <footer class="mention">Un jeu proposé par <strong>Canidés By Cruz</strong> — Éducation canine</footer>
+  </section>
+
+  <!-- ======================= QUESTION ======================= -->
+  <section id="ecran-question" class="ecran" aria-live="polite">
+    <header class="q-entete">
+      <div class="q-haut">
+        <span class="q-numero" id="q-numero">Question 1/10</span>
+        <span class="q-score"><span data-icone="paw"></span><span id="q-score">0</span>&nbsp;pts</span>
+      </div>
+      <div class="progression" id="progression" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progression-barre" id="progression-barre"></div>
+      </div>
+    </header>
+    <div class="q-corps" id="q-corps"></div>
+  </section>
+
+  <!-- ======================= RÉSULTAT ======================= -->
+  <section id="ecran-resultat" class="ecran">
+    <div class="res-grille">
+      <div class="res-principal">
+        <p class="res-sur-titre">Bravo, défi terminé&nbsp;!</p>
+        <div class="medaille" id="medaille"></div>
+        <div class="res-score"><span id="res-score">0</span><span class="res-max">/ 100</span></div>
+        <h2 class="res-niveau" id="res-niveau"></h2>
+        <p class="res-message" id="res-message"></p>
+      </div>
+      <div class="res-cote">
+        <div class="conseil" id="res-conseil" hidden>
+          <h3><span data-icone="lightbulb"></span> Le petit conseil</h3>
+          <p class="conseil-q" id="conseil-q"></p>
+          <p id="conseil-t"></p>
+        </div>
+        <div class="carte-cta">
+          <p class="cta-texte">Chaque chien est unique. Envie de mieux comprendre le tien&nbsp;?<br><strong>Viens échanger avec Canidés By Cruz&nbsp;!</strong></p>
+          <div class="cta-bas">
+            <div class="marque marque-claire" data-marque></div>
+            <figure class="qr" id="qr-bloc" hidden>
+              <img id="qr-img" alt="QR code vers le site de Canidés By Cruz">
+              <figcaption id="qr-texte">Scanne-moi&nbsp;!</figcaption>
+            </figure>
+          </div>
+        </div>
+        <button class="btn btn-principal" id="btn-rejouer"><span data-icone="rotate"></span> Relever le défi à nouveau</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ESPACE EXPOSANT ======================= -->
+  <section id="ecran-admin" class="ecran">
+    <div class="admin">
+      <header class="admin-entete">
+        <h2>Espace exposant</h2>
+        <button class="btn btn-secondaire" id="btn-admin-quitter"><span data-icone="arrow"></span> Retour au jeu</button>
+      </header>
+      <div class="admin-kpis" id="admin-kpis"></div>
+
+      <h3>Réglages</h3>
+      <div class="admin-bloc">
+        <p>Retour automatique à l'accueil après inactivité</p>
+        <div class="segment" id="seg-inactivite"></div>
+      </div>
+
+      <h3>Réussite par catégorie</h3>
+      <div class="admin-bloc" id="admin-categories"></div>
+
+      <h3>Réussite par question <small>(les plus difficiles en premier)</small></h3>
+      <div class="admin-bloc admin-table" id="admin-questions"></div>
+
+      <h3>Fichiers et hors ligne</h3>
+      <div class="admin-bloc"><ul class="admin-fichiers" id="admin-fichiers"></ul></div>
+
+      <div class="admin-actions">
+        <button class="btn btn-secondaire" id="btn-export"><span data-icone="download"></span> Exporter les statistiques (CSV)</button>
+        <button class="btn btn-danger" id="btn-reset"><span data-icone="trash"></span> Réinitialiser les statistiques</button>
+      </div>
+      <p class="admin-version" id="admin-version"></p>
+    </div>
+  </section>
+</main>
+
+<!-- Inactivité -->
+<div id="overlay-inactif" class="overlay" hidden>
+  <div class="overlay-carte" role="alertdialog" aria-labelledby="inactif-titre">
+    <div class="chien-mini" data-chien></div>
+    <h2 id="inactif-titre">Tu es toujours là&nbsp;?</h2>
+    <p>Retour à l'accueil dans <strong id="inactif-compte">15</strong>&nbsp;s.</p>
+    <button class="btn btn-principal" id="btn-continuer">Je continue&nbsp;!</button>
+  </div>
+</div>
+
+<!-- Code exposant -->
+<div id="overlay-pin" class="overlay" hidden>
+  <div class="overlay-carte" role="dialog" aria-labelledby="pin-titre">
+    <h2 id="pin-titre">Code exposant</h2>
+    <div class="pin-points" id="pin-points"></div>
+    <div class="pin-clavier" id="pin-clavier"></div>
+  </div>
+</div>
+
+<canvas id="confettis" aria-hidden="true"></canvas>
+</body>
+</html>

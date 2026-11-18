@@ -1,0 +1,20 @@
+Dépose ici tes fichiers (noms exacts, en minuscules). Tous sont facultatifs :
+s'il en manque un, le jeu affiche automatiquement un remplacement propre.
+
+  logo.png                     Ton logo (PNG fond transparent, ~600 px de large)
+  qr-code.png                  QR code vers ton site (carré, ~400 px)
+  accueil-chien.jpg            Photo de l'accueil (carrée, ~900 px) — sinon illustration
+
+  q01-chien-leche-truffe.jpg   Chien qui se lèche la truffe
+  q02-chien-queue.jpg          Chien de profil, queue visible
+  q03-chien-tete-detournee.jpg Chien qui détourne la tête
+  q04-chien-fige.jpg           Chien immobile / figé
+  q05-chien-detendu.jpg        Chien détendu qui vient au contact
+
+Photos : format paysage 4:3, ~1200 px de large, JPEG qualité 75-80 (< 250 Ko).
+Utilise uniquement des photos dont tu as les droits (les tiennes, celles de tes clients
+avec accord, ou des banques d'images à licence commerciale).
+
+Pour changer un nom de fichier ou ajouter une photo à une autre question :
+modifie "image: { src: ..., alt: ... }" dans contenu.js.
+Après tout ajout, change VERSION dans sw.js (gdc-v1 -> gdc-v2) avant de redéployer.
