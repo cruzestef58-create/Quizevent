@@ -459,3 +459,4 @@ h1 {
 
 /* Logo réel plus grand sur l'accueil */
 #marque-accueil .logo-img { max-height: clamp(120px, 16vh, 190px); max-width: 340px; }
+#marque-accueil .logo-img { background: var(--rouge); padding: 14px 22px; border-radius: 24px; box-shadow: var(--ombre); }

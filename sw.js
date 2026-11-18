@@ -1,7 +1,7 @@
 // Service worker : met tout le jeu en cache pour fonctionner sans réseau.
 // ⚠️ Après chaque modification du jeu, change VERSION (ex. v2, v3…) puis recharge l'iPad
 // une fois en ligne : la nouvelle version remplacera l'ancienne.
-const VERSION = 'gdc-v3';
+const VERSION = 'gdc-v4';
 const FICHIERS = [
   './', 'index.html', 'styles.css', 'app.js', 'logic.js', 'contenu.js', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',

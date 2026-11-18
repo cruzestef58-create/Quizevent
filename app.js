@@ -426,7 +426,6 @@ function verifierFichiers() {
     : `<li class="manque">✗ Mode hors ligne pas encore actif (ouvre le jeu depuis une adresse https, puis recharge une fois).</li>`;
   const fichiers = [
     [CONFIG.logo, 'Logo (sinon : logo texte)'],
-    [CONFIG.logoClair, 'Logo version claire, sur fond rouge (sinon : logo texte)'],
     [CONFIG.qrCode, 'QR code (sinon : bloc masqué)'],
     [CONFIG.photoAccueil, 'Photo d\'accueil (facultative, sinon : illustration)'],
     ...QUESTIONS.filter((q) => q.image).map((q) => [q.image.src, `Photo ${q.id.toUpperCase()} (sinon : illustration)`]),
@@ -484,10 +483,10 @@ function initialiser() {
   for (const el of $$('[data-chien]')) el.innerHTML = CHIEN;
   for (const el of $$('[data-marque]')) el.innerHTML = marqueHTML();
 
-  // Logo réel : remplace le logo texte s'il est présent (version claire sur fond rouge)
+  // Logo réel : remplace le logo texte s'il est présent 
   for (const img of $$('.logo-img')) {
     img.onload = () => { img.hidden = false; img.nextElementSibling.hidden = true; };
-    img.src = img.closest('.marque-claire') ? CONFIG.logoClair : CONFIG.logo;
+    img.src = CONFIG.logo;
   }
 
   // Photo d'accueil facultative
@@ -550,7 +549,7 @@ function initialiser() {
   // Hors ligne : service worker + préchargement des images fournies
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('sw.js').then(() => navigator.serviceWorker.ready).then((reg) => {
-      const images = [CONFIG.logo, CONFIG.logoClair, CONFIG.qrCode, CONFIG.photoAccueil, ...QUESTIONS.filter((q) => q.image).map((q) => q.image.src)];
+      const images = [CONFIG.logo, CONFIG.qrCode, CONFIG.photoAccueil, ...QUESTIONS.filter((q) => q.image).map((q) => q.image.src)];
       reg.active?.postMessage({ type: 'precache', urls: images });
     }).catch((err) => console.warn('Service worker non installé :', err));
   }

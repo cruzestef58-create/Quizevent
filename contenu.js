@@ -10,8 +10,7 @@ export const CONFIG = {
   pointsParBonneReponse: 10,
   repartition: { A: 3, B: 3, C: 2, D: 2 }, // nombre de questions tirées par catégorie
   texteSite: 'canidesbycruz.fr', // affiché sous le QR code
-  logo: 'images/logo.png',      // logo rouge, fond transparent (sur fond clair)
-  logoClair: 'images/logo-clair.png', // logo pêche, fond transparent (sur fond rouge)
+  logo: 'images/logo.png',      // ton logo, fond transparent (posé sur un bloc rouge)
   qrCode: 'images/qr-code.png', // QR code vers ton site
   photoAccueil: 'images/accueil-chien.jpg', // facultatif : remplace l'illustration de l'accueil
 };
